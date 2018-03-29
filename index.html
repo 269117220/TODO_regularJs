@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>易计划-TODO</title>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" type="text/css" href="css/lib/font_awesome/css/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/main.css"/>
+  </head>
+  <body>
+    <div id='container'></div>
+    <script id='todoTemplate' type='template/regular'>
+      <div id="headerTitle">
+          <img src="./img/logo.png"/>&nbsp;<h1>易计划-TODO</h1>
+      </div>
+      <div id='toDoBody'>
+          <div id='searchDiv'>
+            <input type="checkbox" class="check" on-click={this.changeCheck($event)} checked={(todos|filterTodos).length==this.getCheckedLen()&&(todos|filterTodos).length!=0}>
+            <input id="searchAdd" placeholder="添加TODO记录" r-model={editTodo} on-enter={ this.addTodo(editTodo) } />
+          </div>
+          <ul id="listContainer">
+            {#list todos|filterTodos as todo}
+              <li class="listItem">
+                <input type="checkbox" class="check" r-model={todo.checked} title="标记完成">
+                <input class="todoInfo" r-class={{'complete':todo.checked}} on-dblclick={this.edit($event)} on-blur={this.blur($event)} r-model={todo.textInfo} title={todo.textInfo} readonly/>
+                <span class="time" title="创建时间">{todo.createTime}</span>
+                <span class="fa fa-remove remove" on-click={todos.splice(todo_index,1)} title='删除'></span>
+              </li>
+            {/list}
+            {#if todos.length!=0}
+            <li id="listOperate">
+              <span id="leftItem">{todos.length-this.getCheckedLen()} items left</span>
+              <div>
+                <button id="all" r-class={{'active':currShow=='all'}} on-click={currShow='all'}>all</button>
+                <button id="active" r-class={{'active':currShow=='active'}} on-click={currShow='active'}>Active</button>
+                <button id="completed" r-class={{'active':currShow=='completed'}} on-click={currShow='completed'}>Completed</button>
+              </div>
+              <button id="clearComplete" on-click={this.deleteCompleted()}>clearComplete</button>
+            </li>
+            {/if}
+          </ul>
+      </div>
+      <div id='footer'>
+          <li>+添加TODO&nbsp;&nbsp;+全选/反选</li>
+          <li>+双击编辑&nbsp;&nbsp;+清除已完成TODO</li>
+          <li>+all/active/completed</li>
+      </div>
+    </script>
+    <script type="text/javascript" src="./js/regular.min.js"></script>
+    <script type="text/javascript" src='./js/tool.js'></script>
+    <script type="text/javascript" src='./js/index.js'></script>
+  </body>
+</html>
