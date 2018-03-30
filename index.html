@@ -19,9 +19,9 @@
           </div>
           <ul id="listContainer">
             {#list todos|filterTodos as todo}
-              <li class="listItem">
+              <li class="listItem" on-dblclick={this.edit($event)}>
                 <input type="checkbox" class="check" r-model={todo.checked} title="标记完成">
-                <input class="todoInfo" r-class={{'complete':todo.checked}} on-dblclick={this.edit($event)} on-blur={this.blur($event)} r-model={todo.textInfo} title={todo.textInfo} readonly/>
+                <input class="todoInfo" r-class={{'complete':todo.checked}}  on-blur={this.blur($event)} r-model={todo.textInfo} title={todo.textInfo} disabled/>
                 <span class="time" title="创建时间">{todo.createTime}</span>
                 <span class="fa fa-remove remove" on-click={todos.splice(todo_index,1)} title='删除'></span>
               </li>

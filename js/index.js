@@ -10,13 +10,16 @@ var component=Regular.extend({
        this.data.todos=todoTemp;
 	},
 	edit:function(elem){
-      elem.target.removeAttribute('readonly');
-      elem.target.style="background:#FFFFF0;border:1px solid #ddd;flex-basis:482px;";
-      elem.target.nextSibling.nextSibling.style="display:none";
-      elem.target.nextSibling.nextSibling.nextSibling.nextSibling.style="display:none";
+	  if(elem.target.getAttribute('class')=='todoInfo'){
+      	elem.target.removeAttribute('disabled');
+      	elem.target.style="background:#FFFFF0;border:1px solid #ddd;flex-basis:482px;";
+      	elem.target.nextSibling.nextSibling.style="display:none";
+      	elem.target.nextSibling.nextSibling.nextSibling.nextSibling.style="display:none";
+	  	elem.target.focus();
+	  }
 	},
 	blur:function(elem){
-      elem.target.setAttribute('readonly','readonly');
+      elem.target.setAttribute('disabled','disabled');
       elem.target.style="background:white;border:1px solid #FFF;flex-basis:357px;";
       elem.target.nextSibling.nextSibling.style="display:inline-block";
       elem.target.nextSibling.nextSibling.nextSibling.nextSibling.style="display:inline-block";
