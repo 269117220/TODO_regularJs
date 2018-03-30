@@ -12,4 +12,4 @@
 6. all\active\completed切换
 7. 清除已完成TODO
 
-<strong>注意：</strong>由于后端和NEJ版本的TODO应用基本一致，时间有限，不添加了
+<strong>注意：</strong>regularJs实现TODO，为可选任务，只要实现其前端即可，其后端和NEJ版本的TODO应用基本一致，时间有限，不添加了
